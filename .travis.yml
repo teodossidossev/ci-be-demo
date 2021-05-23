@@ -2,8 +2,8 @@ language: java
 
 # dist: xenial
 
-services:
-  - docker
+# services:
+#   - docker
 
 # if: type = pull_request OR branch = master OR tag IS present
 # if: tag IS present
