@@ -11,15 +11,16 @@ language: java
 script: mvn package -DskipTests
 
 before_deploy:
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-  - docker build -t java-app .
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  - docker build -t ci-be .
   - docker images
-  - docker tag java-app $DOCKER_USERNAME/java-app
-  - docker push $DOCKER_USERNAME/java-app
+  - docker tag ci-be $DOCKER_USERNAME/ci-be
+  - docker push $DOCKER_USERNAME/ci-be
 
-  deploy:
+deploy:
   - provider: script
+    skip_existing: true
     skip_cleanup: true
     script: echo "DONE!"
     on:
-      branch: main
+      tags: true
