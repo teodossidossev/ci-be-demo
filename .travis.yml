@@ -5,8 +5,8 @@ language: java
 services:
   - docker
 
-# if: type = pull_request OR branch = main OR tag IS present
-if: tag IS present
+if: type = pull_request OR branch = master OR tag IS present
+# if: tag IS present
 
 script: mvn package -DskipTests
 
